@@ -1,0 +1,56 @@
+{
+  "active_providers": {
+    "price_data": "polygon_io",
+    "execution": "tradestation", 
+    "news": "polygon_news",
+    "analytics": "internal_ta"
+  },
+  "fallback_providers": {
+    "price_data": ["yahoo_finance", "alpha_vantage"],
+    "execution": [],
+    "news": ["alpha_vantage_news"],
+    "analytics": []
+  },
+  "provider_settings": {
+    "polygon_io": {
+      "enabled": true,
+      "timeout_seconds": 30,
+      "rate_limit_per_minute": 300,
+      "retry_attempts": 3,
+      "backoff_multiplier": 2.0
+    },
+    "tradestation": {
+      "enabled": true,
+      "timeout_seconds": 45,
+      "rate_limit_per_minute": 60,
+      "retry_attempts": 2,
+      "backoff_multiplier": 1.5,
+      "environment": "simulation"
+    },
+    "yahoo_finance": {
+      "enabled": true,
+      "timeout_seconds": 15,
+      "rate_limit_per_minute": 2000,
+      "retry_attempts": 2,
+      "backoff_multiplier": 1.5
+    },
+    "alpha_vantage": {
+      "enabled": false,
+      "timeout_seconds": 20,
+      "rate_limit_per_minute": 5,
+      "retry_attempts": 1,
+      "backoff_multiplier": 2.0
+    },
+    "internal_ta": {
+      "enabled": true,
+      "cache_duration_minutes": 5,
+      "indicators_enabled": ["rsi", "macd", "sma", "ema", "bollinger"]
+    }
+  },
+  "health_check_settings": {
+    "interval_seconds": 300,
+    "timeout_seconds": 10,
+    "max_consecutive_failures": 3,
+    "auto_failover": true
+  }
+}

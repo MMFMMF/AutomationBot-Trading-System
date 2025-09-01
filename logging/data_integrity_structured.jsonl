@@ -1,0 +1,6 @@
+{"timestamp": "2025-08-31T17:06:23.668597+00:00", "component": "data_integrity", "message": "Registered data lineage for trade_data", "context": {}}
+{"timestamp": "2025-08-31T17:06:23.669347+00:00", "component": "data_integrity", "message": "Registered data lineage for performance_metrics", "context": {}}
+{"timestamp": "2025-08-31T17:06:23.669793+00:00", "component": "data_integrity", "message": "Registered data lineage for portfolio_data", "context": {}}
+{"timestamp": "2025-08-31T17:10:59.400540+00:00", "component": "data_integrity", "message": "Registered data lineage for trade_data", "context": {}}
+{"timestamp": "2025-08-31T17:10:59.401547+00:00", "component": "data_integrity", "message": "Registered data lineage for performance_metrics", "context": {}}
+{"timestamp": "2025-08-31T17:10:59.402023+00:00", "component": "data_integrity", "message": "Registered data lineage for portfolio_data", "context": {}}

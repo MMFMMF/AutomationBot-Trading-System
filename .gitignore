@@ -1,0 +1,140 @@
+# Sensitive data and credentials
+.env
+.env.local
+.env.production
+*.key
+*.pem
+credentials.json
+api_keys.txt
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+trading_platform.db
+master_trading_platform.db
+data/*.db
+data/*.sqlite
+
+# Log files
+*.log
+logs/
+*.log.*
+*.out
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+
+# Virtual environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+.venv/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Trading specific
+backups/
+*.backup
+temp/
+tmp/
+
+# Performance metrics elimination documentation (contains sensitive debugging info)
+PERFORMANCE_METRICS_ELIMINATION.md
+
+# Development and debugging files
+comprehensive_data_wipe.py
+surgical_debug.py
+fix_missing_paper_trades_table.py
+reconfigure_capital_to_*.py
+reset_to_clean_slate.py
+test_*.py
+verify_*.py
+validate_*.py
+run_portfolio_tests.py
+clear_portfolio_cache.py
+
+# Production and deployment analysis files (contain sensitive info)
+PRODUCTION_READINESS_REPORT.md
+DEPLOYMENT_COMPLETION_REPORT.md
+DYNAMIC_PORTFOLIO_IMPLEMENTATION.md
+INSTALLATION_GUIDE.md
+MODULAR_ARCHITECTURE.md
+TROUBLESHOOTING.md
+
+# Legacy and unused files
+main.py
+modular_main.py
+deploy.py
+START_*.bat
+clean_chart_data.json
+
+# Claude Code settings
+.claude/
+
+# Docker and container files
+Dockerfile
+docker-compose.yml
+docker/
+requirements-prod.txt
+
+# System files
+nul

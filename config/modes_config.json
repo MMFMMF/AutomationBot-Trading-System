@@ -1,0 +1,72 @@
+{
+  "trading_modes": {
+    "tradestation_only": {
+      "description": "All trades through TradeStation API",
+      "providers": {
+        "price_data": "polygon_io",
+        "execution": "tradestation",
+        "news": "polygon_news", 
+        "analytics": "internal_ta"
+      },
+      "symbol_routing": {
+        "stocks": "tradestation",
+        "etfs": "tradestation",
+        "options": "tradestation",
+        "crypto": "blocked"
+      },
+      "risk_limits": {
+        "max_position_pct": 0.10,
+        "max_daily_loss_pct": 0.05,
+        "min_balance_threshold": 14000
+      }
+    },
+    "hybrid": {
+      "description": "Intelligent routing between TradeStation and DeFi",
+      "providers": {
+        "price_data": "polygon_io",
+        "execution": "auto_route",
+        "news": "polygon_news",
+        "analytics": "internal_ta"
+      },
+      "symbol_routing": {
+        "stocks": "tradestation",
+        "etfs": "tradestation", 
+        "options": "tradestation",
+        "crypto": "defi"
+      },
+      "risk_limits": {
+        "max_position_pct": 0.08,
+        "max_daily_loss_pct": 0.04,
+        "min_balance_threshold": 15000
+      }
+    },
+    "defi_only": {
+      "description": "All trades through DeFi protocols",
+      "providers": {
+        "price_data": "polygon_io",
+        "execution": "defi",
+        "news": "polygon_news",
+        "analytics": "internal_ta"
+      },
+      "symbol_routing": {
+        "stocks": "blocked",
+        "etfs": "blocked",
+        "options": "blocked", 
+        "crypto": "defi"
+      },
+      "risk_limits": {
+        "max_position_pct": 0.15,
+        "max_daily_loss_pct": 0.06,
+        "min_balance_threshold": 12000
+      }
+    }
+  },
+  "current_mode": "tradestation_only",
+  "mode_switching": {
+    "enabled": false,
+    "auto_switch_conditions": {
+      "tradestation_down": "hybrid",
+      "market_hours_only": "tradestation_only"
+    }
+  }
+}

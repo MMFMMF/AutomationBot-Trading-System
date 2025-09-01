@@ -1,0 +1,33 @@
+{
+  "execution_mode": false,
+  "simulation_settings": {
+    "realistic_delays": true,
+    "simulate_api_failures": false,
+    "log_all_actions": true,
+    "failure_rate": 0.05
+  },
+  "execution_settings": {
+    "confirm_trades": true,
+    "dry_run_first": true,
+    "max_trade_value": 10000
+  },
+  "provider_overrides": {
+    "tradestation": {
+      "force_simulation": true,
+      "reason": "Awaiting API credentials"
+    },
+    "defi": {
+      "force_simulation": true,
+      "reason": "Safety precaution"
+    }
+  },
+  "ui_settings": {
+    "prominent_mode_display": true,
+    "confirmation_dialogs": true,
+    "warning_colors": {
+      "simulation": "#28a745",
+      "execution": "#dc3545"
+    }
+  },
+  "last_updated": "2025-08-30T12:06:23.448268"
+}

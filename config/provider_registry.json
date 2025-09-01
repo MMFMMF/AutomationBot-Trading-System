@@ -1,0 +1,105 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2025-08-30T11:49:50.595589",
+  "providers": {
+    "polygon_io": {
+      "metadata": {
+        "provider_name": "polygon_io",
+        "provider_type": "price_data",
+        "display_name": "Polygon.io Market Data",
+        "description": "Real-time and historical market data from Polygon.io",
+        "version": "1.0.0",
+        "author": "AutomationBot System",
+        "requires_credentials": true,
+        "supported_features": [
+          "real_time_quotes",
+          "historical_data",
+          "market_status"
+        ],
+        "configuration_schema": {},
+        "health_check_endpoint": null,
+        "documentation_url": null
+      },
+      "module_path": "providers.polygon_price_provider",
+      "class_name": "PolygonPriceProvider",
+      "enabled": true,
+      "configuration": {},
+      "credentials_template": {}
+    },
+    "tradestation": {
+      "metadata": {
+        "provider_name": "tradestation",
+        "provider_type": "execution",
+        "display_name": "TradeStation Brokerage",
+        "description": "Trade execution through TradeStation API",
+        "version": "1.0.0",
+        "author": "AutomationBot System",
+        "requires_credentials": true,
+        "supported_features": [
+          "market_orders",
+          "limit_orders",
+          "stop_orders",
+          "account_balance"
+        ],
+        "configuration_schema": {},
+        "health_check_endpoint": null,
+        "documentation_url": null
+      },
+      "module_path": "providers.tradestation_executor",
+      "class_name": "TradeStationExecutor",
+      "enabled": true,
+      "configuration": {},
+      "credentials_template": {}
+    },
+    "defi": {
+      "metadata": {
+        "provider_name": "defi",
+        "provider_type": "execution",
+        "display_name": "DeFi DEX Execution",
+        "description": "Decentralized exchange execution via 1inch aggregator",
+        "version": "1.0.0",
+        "author": "AutomationBot System",
+        "requires_credentials": false,
+        "supported_features": [
+          "dex_swaps",
+          "token_routing",
+          "slippage_protection"
+        ],
+        "configuration_schema": {},
+        "health_check_endpoint": null,
+        "documentation_url": null
+      },
+      "module_path": "providers.defi_executor",
+      "class_name": "DeFiExecutor",
+      "enabled": true,
+      "configuration": {},
+      "credentials_template": {}
+    },
+    "internal_ta": {
+      "metadata": {
+        "provider_name": "internal_ta",
+        "provider_type": "analytics",
+        "display_name": "Internal Technical Analysis",
+        "description": "Built-in technical analysis indicators",
+        "version": "1.0.0",
+        "author": "AutomationBot System",
+        "requires_credentials": false,
+        "supported_features": [
+          "rsi",
+          "macd",
+          "sma",
+          "ema",
+          "bollinger_bands"
+        ],
+        "configuration_schema": {},
+        "health_check_endpoint": null,
+        "documentation_url": null
+      },
+      "module_path": "providers.internal_analytics_provider",
+      "class_name": "InternalAnalyticsProvider",
+      "enabled": true,
+      "configuration": {},
+      "credentials_template": {}
+    }
+  }
+}

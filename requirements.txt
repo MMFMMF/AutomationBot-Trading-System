@@ -1,0 +1,66 @@
+# Core web framework
+Flask==3.1.2
+Flask-Login==0.6.3
+
+# Data processing and analysis
+pandas==2.3.1
+numpy==2.3.2
+
+# HTTP requests and API clients
+requests==2.32.5
+httpx==0.28.1
+
+# Market data providers
+polygon-api-client==1.15.3
+yfinance==0.2.65
+alpha_vantage==3.0.0
+
+# Trading platforms
+alpaca-py==0.42.0
+alpaca-trade-api==0.48
+
+# Database
+psycopg2-binary==2.9.10
+peewee==3.18.2
+
+# Configuration and environment
+python-dotenv==1.1.1
+PyYAML==6.0.2
+
+# Security and authentication
+cryptography==45.0.6
+
+# Scheduling and async processing
+schedule==1.2.2
+aiohttp==3.12.15
+
+# Data visualization and charts
+plotly==6.3.0
+
+# Scientific computing
+scipy==1.16.1
+scikit-learn==1.7.1
+
+# System monitoring
+psutil==7.0.0
+memory-profiler==0.61.0
+
+# Text processing
+beautifulsoup4==4.13.4
+nltk==3.9.1
+textblob==0.19.0
+
+# Utilities
+python-dateutil==2.9.0.post0
+pytz==2025.2
+click==8.2.1
+tqdm==4.67.1
+packaging==25.0
+
+# Web scraping and data sources
+sseclient-py==1.8.0
+websockets==14.2
+websocket-client==1.8.0
+
+# Development tools
+colorama==0.4.6

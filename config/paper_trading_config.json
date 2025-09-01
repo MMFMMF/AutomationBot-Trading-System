@@ -1,0 +1,55 @@
+{
+  "signal_generation": {
+    "enabled": true,
+    "interval_minutes": 0.5,
+    "strategies_enabled": [
+      "ma_crossover",
+      "rsi_mean_reversion",
+      "momentum_breakout"
+    ],
+    "max_signals_per_hour": 120,
+    "min_signal_strength": "weak"
+  },
+  "execution": {
+    "slippage": {
+      "stocks": 0.02,
+      "crypto": 0.15,
+      "etfs": 0.01
+    },
+    "fees": {
+      "tradestation": 0.5,
+      "defi": 25.0
+    },
+    "partial_fills": 0.05,
+    "rejection_rate": 0.02
+  },
+  "risk_management": {
+    "max_position_size_pct": 8.0,
+    "stop_loss_pct": 3.0,
+    "take_profit_pct": 6.0,
+    "max_daily_trades": 20,
+    "max_positions": 10
+  },
+  "symbols": {
+    "stocks": [
+      "AAPL",
+      "MSFT",
+      "GOOGL",
+      "AMZN",
+      "TSLA",
+      "NVDA",
+      "META"
+    ],
+    "crypto": [
+      "ETH",
+      "BTC",
+      "USDC"
+    ],
+    "etfs": [
+      "SPY",
+      "QQQ",
+      "IWM",
+      "VTI"
+    ]
+  }
+}
