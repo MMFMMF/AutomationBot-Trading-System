@@ -471,7 +471,7 @@ class PerformanceOptimizer:
     Main performance optimization coordinator
     """
     
-    def __init__(self, database_path: str = "trading_platform.db"):
+    def __init__(self, database_path: str = "./data/automation_bot.db"):
         """
         Initialize performance optimizer
         

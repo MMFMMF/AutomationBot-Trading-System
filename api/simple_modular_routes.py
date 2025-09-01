@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 import logging
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 import uuid
 from dataclasses import asdict
 # REMOVED: import random - synthetic data generation permanently disabled for data integrity
@@ -2529,17 +2529,25 @@ def create_simple_modular_app():
         
         try:
             # FORCE CLEAN STATE: Check if system is in clean slate mode
-            with sqlite3.connect('trading_platform.db') as conn:
+            with sqlite3.connect('./data/automation_bot.db') as conn:
                 cursor = conn.cursor()
                 cursor.execute("SELECT COUNT(*) FROM paper_trades")
                 trade_count = cursor.fetchone()[0]
                 
-                cursor.execute("SELECT value FROM portfolio_config WHERE key='clean_state_verified'")
-                clean_state_result = cursor.fetchone()
-                is_clean_state = clean_state_result and clean_state_result[0] == 'true'
+                # Check for clean state setting (table may not exist)
+                try:
+                    cursor.execute("SELECT value FROM portfolio_config WHERE key='clean_state_verified'")
+                    clean_state_result = cursor.fetchone()
+                    is_clean_state = clean_state_result and clean_state_result[0] == 'true'
+                except sqlite3.OperationalError:
+                    # portfolio_config table doesn't exist, default to not clean state
+                    is_clean_state = False
+            
+            print(f"DEBUG CLEAN STATE CHECK: trade_count={trade_count}, is_clean_state={is_clean_state}")
             
             # If clean state, return baseline data only
             if trade_count == 0 or is_clean_state:
+                print("DEBUG: Returning clean slate data")
                 clean_baseline_data = {
                     'portfolio_summary': {
                         'total_value': 500.00,
@@ -2593,13 +2601,65 @@ def create_simple_modular_app():
                 real_data_svc = get_real_data_service()
             except:
                 from core.real_data_service import initialize_real_data_service
-                initialize_real_data_service("trading_platform.db")
+                initialize_real_data_service("./data/automation_bot.db")
                 real_data_svc = get_real_data_service()
             
-            # Get comprehensive real data with full validation
-            real_chart_data = real_data_svc.get_comprehensive_real_data()
+            # Get real-time portfolio data using Dynamic Portfolio Manager
+            try:
+                from core.dynamic_portfolio_manager import get_portfolio_manager
+                from config.settings import system_config
+                import asyncio
+                
+                portfolio_manager = get_portfolio_manager(system_config)
+                
+                # Run async function in sync context
+                try:
+                    loop = asyncio.get_event_loop()
+                except:
+                    loop = asyncio.new_event_loop()
+                    asyncio.set_event_loop(loop)
+                    
+                portfolio_data = loop.run_until_complete(portfolio_manager.calculate_portfolio_value())
+                
+                # Convert portfolio data to chart format
+                real_chart_data = {
+                    'portfolio_summary': {
+                        'total_value': portfolio_data.total_portfolio_value,
+                        'cash_balance': portfolio_data.cash_balance,
+                        'market_value': portfolio_data.total_market_value,
+                        'unrealized_pnl': portfolio_data.unrealized_pnl,
+                        'realized_pnl': portfolio_data.realized_pnl,
+                        'total_pnl': portfolio_data.total_pnl,
+                        'day_change': 0.0,
+                        'day_change_percent': 0.0
+                    },
+                    'positions_data': [{
+                        'symbol': pos.symbol,
+                        'quantity': pos.quantity,
+                        'market_value': pos.market_value,
+                        'unrealized_pnl': pos.unrealized_pnl,
+                        'weight_percent': pos.weight_percent
+                    } for pos in portfolio_data.positions],
+                    'portfolio_history': [{
+                        'time': datetime.now().strftime('%Y-%m-%d %H:%M'),
+                        'value': portfolio_data.total_portfolio_value,
+                        'change_percent': (portfolio_data.total_pnl / 500.0) * 100 if portfolio_data.total_pnl != 0 else 0.0
+                    }],
+                    'trading_summary': {
+                        'total_trades': 1 if portfolio_data.position_count > 0 else 0,
+                        'win_rate': 0.0,
+                        'total_pnl': portfolio_data.total_pnl,
+                        'open_positions': portfolio_data.position_count,
+                        'available_capital': portfolio_data.cash_balance
+                    }
+                }
+                
+            except Exception as e:
+                logger.error(f"Error getting dynamic portfolio data: {e}")
+                # Fallback to real data service
+                real_chart_data = real_data_svc.get_comprehensive_real_data()
             
-            # Add system status from automation engine (real data only)
+            # Add system status from automation engine
             system_status = automation_engine.get_status_summary()
             real_chart_data['system_metrics'] = {
                 'total_signals': system_status.get('total_signals', 0),
@@ -3009,7 +3069,7 @@ def create_simple_modular_app():
         """VERIFICATION: Test that comprehensive data wipe was successful"""
         import sqlite3
         try:
-            with sqlite3.connect('trading_platform.db') as conn:
+            with sqlite3.connect('./data/automation_bot.db') as conn:
                 cursor = conn.cursor()
                 cursor.execute("SELECT COUNT(*) FROM paper_trades")
                 trade_count = cursor.fetchone()[0]

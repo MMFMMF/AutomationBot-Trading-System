@@ -50,7 +50,7 @@ class SystemConfig:
     """System-wide configuration settings"""
     debug_mode: bool = False
     logging_level: str = "INFO"
-    database_path: str = "trading_platform.db"
+    database_path: str = "./data/automation_bot.db"
     backup_enabled: bool = True
     backup_interval: int = 3600  # seconds
     api_rate_limit: int = 100

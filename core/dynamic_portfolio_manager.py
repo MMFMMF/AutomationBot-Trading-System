@@ -528,20 +528,37 @@ class DynamicPortfolioManager:
                 if datetime.now() - timestamp < self.cache_duration:
                     return price
             
-            # Get fresh price
+            # Get fresh price using simple HTTP request to Polygon.io
             price = None
             
-            if self.polygon_provider:
-                try:
-                    price_data = await self.polygon_provider.get_current_price(symbol)
-                    if price_data and 'price' in price_data:
-                        price = float(price_data['price'])
-                except Exception as e:
-                    logger.warning(f"Error getting price from Polygon for {symbol}: {e}")
+            # Try direct Polygon.io API call
+            try:
+                import requests
+                import os
+                from config.settings import system_config
+                
+                api_key = system_config.polygon_api_key
+                if api_key:
+                    # Use Polygon.io real-time price endpoint
+                    url = f"https://api.polygon.io/v2/last/trade/{symbol}?apikey={api_key}"
+                    response = requests.get(url, timeout=5)
+                    
+                    if response.status_code == 200:
+                        data = response.json()
+                        if data.get('status') == 'OK' and 'results' in data:
+                            price = float(data['results']['p'])  # 'p' is price field
+                            print(f"DEBUG PRICE FETCH: {symbol} = ${price} from Polygon.io")
+                    else:
+                        print(f"DEBUG PRICE FETCH FAILED: {symbol} - HTTP {response.status_code}")
+                        
+            except Exception as e:
+                logger.warning(f"Error getting price from Polygon API for {symbol}: {e}")
             
             # If no price available, try to get last known price from database
             if not price:
                 price = await self._get_last_known_price(symbol)
+                if price:
+                    print(f"DEBUG PRICE FETCH: {symbol} = ${price} from database fallback")
             
             # Cache the price
             if price:
