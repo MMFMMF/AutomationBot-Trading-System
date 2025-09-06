@@ -550,7 +550,7 @@ class PaperTradingEngine:
                     config = SystemConfig()
                     portfolio_manager = get_portfolio_manager(config)
                     available_capital = portfolio_manager.get_current_portfolio_value()
-                    max_position_size = available_capital * 0.10  # 10% default
+                    max_position_size = available_capital * 0.25  # 25% default to match new config
                     
                     logger.info(f"Using dynamic capital: ${available_capital:,.2f}")
                 except Exception as e:
@@ -563,8 +563,16 @@ class PaperTradingEngine:
             risk_max_pct = self.trading_config["risk_management"]["max_position_size_pct"] / 100.0
             position_limit = min(max_position_size, available_capital * risk_max_pct)
             
+            # DEBUG: Log position sizing calculation
+            logger.info(f"POSITION SIZING DEBUG - {symbol} at ${price:.2f}")
+            logger.info(f"  Available capital: ${available_capital:.2f}")
+            logger.info(f"  Max position size: ${max_position_size:.2f}")
+            logger.info(f"  Risk max pct: {risk_max_pct:.1%}")
+            logger.info(f"  Position limit: ${position_limit:.2f}")
+            
             # Calculate quantity
             quantity = position_limit / price
+            logger.info(f"  Raw quantity: {quantity:.4f}")
             
             # Round to appropriate decimal places
             if symbol in ["BTC", "ETH"]:
@@ -572,7 +580,17 @@ class PaperTradingEngine:
             elif symbol in ["USDC"]:
                 quantity = round(quantity, 2)
             else:
-                quantity = int(max(1, quantity))  # Whole shares for stocks
+                # For stocks: allow fractional shares if needed to execute trade
+                if quantity >= 0.1:  # Allow minimum 0.1 shares
+                    if quantity >= 1.0:
+                        quantity = int(quantity)  # Use whole shares when possible
+                        logger.info(f"  Final quantity (whole shares): {quantity}")
+                    else:
+                        quantity = round(quantity, 2)  # Use fractional shares
+                        logger.info(f"  Final quantity (fractional shares): {quantity}")
+                else:
+                    quantity = 0  # Skip if less than 0.1 shares
+                    logger.warning(f"  Quantity set to 0: less than 0.1 shares (${price:.2f}) within limit (${position_limit:.2f})")
             
             return quantity
             

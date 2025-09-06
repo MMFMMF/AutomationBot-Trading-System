@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Auto-Refresh Forensic Test</title>
+</head>
+<body>
+    <div id="test-results"></div>
+    <script>
+        console.log('[FORENSIC TEST] Starting auto-refresh simulation');
+        
+        // Simulate the dashboard auto-refresh system
+        let autoRefreshEnabled = true;
+        let refreshCounter = 5;
+        let refreshInterval;
+        
+        function simulateAutoRefresh() {
+            console.log('[FORENSIC TEST] simulateAutoRefresh() called');
+            
+            refreshInterval = setInterval(() => {
+                console.log('[FORENSIC TEST] setInterval fired - counter:', refreshCounter);
+                
+                refreshCounter--;
+                if (refreshCounter <= 0) {
+                    console.log('[FORENSIC TEST] Triggering API call');
+                    refreshCounter = 5;
+                    
+                    // Simulate API call
+                    fetch('http://localhost:5000/api/portfolio/dynamic-valuation')
+                        .then(response => {
+                            console.log('[FORENSIC TEST] API response status:', response.status);
+                            return response.json();
+                        })
+                        .then(data => {
+                            console.log('[FORENSIC TEST] API data received:', data);
+                            document.getElementById('test-results').innerHTML = 
+                                'API Call Successful at: ' + new Date().toISOString();
+                        })
+                        .catch(error => {
+                            console.log('[FORENSIC TEST] API call failed:', error);
+                            document.getElementById('test-results').innerHTML = 
+                                'API Call Failed: ' + error.message;
+                        });
+                }
+            }, 1000);
+            
+            console.log('[FORENSIC TEST] setInterval created with ID:', refreshInterval);
+        }
+        
+        // Start the test
+        simulateAutoRefresh();
+        
+        console.log('[FORENSIC TEST] Test initialization complete');
+    </script>
+</body>
+</html>

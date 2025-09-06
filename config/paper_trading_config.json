@@ -1,7 +1,7 @@
 {
   "signal_generation": {
     "enabled": true,
-    "interval_minutes": 0.5,
+    "interval_minutes": 10,
     "strategies_enabled": [
       "ma_crossover",
       "rsi_mean_reversion",
@@ -24,11 +24,12 @@
     "rejection_rate": 0.02
   },
   "risk_management": {
-    "max_position_size_pct": 8.0,
-    "stop_loss_pct": 3.0,
-    "take_profit_pct": 6.0,
-    "max_daily_trades": 20,
-    "max_positions": 10
+    "max_position_size_pct": 30,
+    "stop_loss_pct": 5,
+    "take_profit_pct": 8,
+    "max_daily_trades": 12,
+    "max_positions": 8,
+    "strategy_type": "custom"
   },
   "symbols": {
     "stocks": [

@@ -1,0 +1,10 @@
+{
+  "is_running": true,
+  "status": "ACTIVE",
+  "started_at": "2025-09-06T09:34:53.351680",
+  "mode": "paper_trading",
+  "verification": [
+    "Capital verified: $500.0",
+    "Provider check failed: ModularAutomationEngine.__init__() missing 1 required positional argument: 'di_container'"
+  ]
+}

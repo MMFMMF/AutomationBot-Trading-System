@@ -58,6 +58,26 @@ class CapitalManager:
         except Exception as e:
             logger.error(f"Error saving capital configuration: {e}")
     
+    def _load_config(self):
+        """Reload capital configuration from file"""
+        try:
+            if self.config_path.exists():
+                with open(self.config_path, 'r') as f:
+                    self.capital_config = json.load(f)
+                self.is_initialized = self.capital_config.get('initialized', False)
+                logger.info(f"Capital configuration reloaded. Capital: ${self.capital_config.get('total_capital', 0):,.2f}")
+                return True
+            else:
+                logger.warning("Capital configuration file not found during reload")
+                return False
+        except Exception as e:
+            logger.error(f"Error reloading capital configuration: {e}")
+            return False
+    
+    def reload_configuration(self):
+        """Public method to reload configuration"""
+        return self._load_config()
+    
     def initialize_capital(self, total_capital: float) -> bool:
         """Initialize the system with total capital amount"""
         try:

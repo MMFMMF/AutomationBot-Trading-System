@@ -2,7 +2,7 @@
   "total_capital": 500.0,
   "capital_source": "clean_slate_database_authority",
   "allocation_percentages": {
-    "max_position_pct": 10.0,
+    "max_position_pct": 30,
     "max_daily_loss_pct": 5.0,
     "emergency_reserve_pct": 20.0,
     "available_trading_pct": 80.0
@@ -10,12 +10,12 @@
   "micro_trading_optimization": {
     "target_position_size": 50.0,
     "fractional_shares_enabled": true,
-    "max_concurrent_positions": 8,
+    "max_concurrent_positions": 4,
     "position_diversification": true
   },
   "min_capital_threshold": 100.0,
   "currency": "USD",
-  "last_updated": "2025-09-01T11:27:12.058205",
+  "last_updated": "2025-09-03T16:59:00.000000",
   "initialized": true,
   "clean_slate_reset": true,
   "tracking_start": "2025-09-01T11:27:12.058221",

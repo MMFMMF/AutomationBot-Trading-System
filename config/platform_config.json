@@ -1,17 +1,13 @@
 {
   "trading": {
     "capital_amount": 500.0,
-    "capital_source": "clean_slate_database_authority",
-    "max_positions": 8,
+    "max_positions": 4,
     "risk_per_trade": 0.02,
     "strategies_enabled": [
       "mixed"
     ],
     "signal_interval": 30,
-    "auto_trading": false,
-    "micro_trading_optimized": true,
-    "fractional_shares_enabled": true,
-    "target_position_size": 50.0
+    "auto_trading": false
   },
   "providers": {
     "price_data_provider": "polygon",
@@ -23,7 +19,7 @@
   "system": {
     "debug_mode": false,
     "logging_level": "INFO",
-    "database_path": "trading_platform.db",
+    "database_path": "./data/automation_bot.db",
     "backup_enabled": true,
     "backup_interval": 3600,
     "api_rate_limit": 100,
@@ -40,22 +36,7 @@
     ]
   },
   "metadata": {
-    "last_saved": "2025-08-31T13:13:51.416791",
-    "version": "3.0",
-    "clean_slate_reset": "2025-09-01T11:27:12.059746",
-    "tracking_start": "2025-09-01T11:27:12.059756",
-    "performance_metrics_eliminated": true,
-    "deployment_pipeline_verified": true,
-    "historical_data_status": "surgically_removed"
-  },
-  "clean_slate_deployment": {
-    "timestamp_verification_enabled": true,
-    "route_precedence_resolved": "simple_modular_routes",
-    "python_cache_elimination_required": true,
-    "process_cleanup_mandatory": true,
-    "deployment_markers": [
-      "DEPLOYMENT_VERIFIED_timestamp",
-      "DEPLOYMENT_VERIFICATION_SIMPLE_MODULAR_ROUTES_timestamp"
-    ]
+    "last_saved": "2025-09-01T16:02:53.617260",
+    "version": "2.1"
   }
 }

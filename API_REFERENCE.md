@@ -1,12 +1,13 @@
-# AutomationBot - API Reference
+# AutomationBot Enhanced Trading Platform - API Reference
 
 ## Overview
 
-The AutomationBot API provides RESTful access to the paper trading platform with real-time portfolio data, trading controls, and system monitoring. All endpoints return standardized JSON responses with comprehensive error handling.
+The AutomationBot Enhanced API provides comprehensive RESTful access to the professional trading platform with **Enhanced Desktop Trading Viewer integration**, real-time portfolio data, advanced trading controls, and system monitoring. Features 5 specialized desktop viewer endpoints plus traditional web API.
 
 **Base URL**: `http://localhost:5000`  
-**Current Version**: 3.0  
-**Capital Scale**: $500 paper trading platform
+**Current Version**: 4.0 - Enhanced Professional Trading Platform  
+**Capital Scale**: $500 paper trading platform  
+**Desktop Integration**: Enhanced Comprehensive Trading Viewer
 
 ## Response Format
 
@@ -44,7 +45,147 @@ All API responses follow this standardized structure:
 }
 ```
 
-## Core Endpoints
+## 🚀 Enhanced Desktop Viewer API Endpoints
+
+### **Enhanced Trading Viewer Integration**
+
+The Enhanced Desktop Trading Viewer uses 5 specialized API endpoints for comprehensive real-time integration:
+
+#### GET `/api/positions`
+**Purpose**: Current position data for desktop viewer display  
+**Integration**: Updates every 5 seconds in desktop viewer
+
+**Response**:
+```json
+{
+  "status": "success",
+  "timestamp": "2025-09-06T10:30:00Z",
+  "data": {
+    "positions": [
+      {
+        "symbol": "AAPL",
+        "quantity": 5.0,
+        "current_price": 175.50,
+        "market_value": 877.50,
+        "cost_basis": 850.00,
+        "unrealized_pnl": 27.50,
+        "unrealized_pnl_percent": 3.24
+      }
+    ],
+    "total_positions": 3,
+    "total_market_value": 2456.78
+  }
+}
+```
+
+#### GET `/api/trades`
+**Purpose**: Recent trade history for desktop display  
+**Integration**: Trading activity feed in Enhanced Viewer
+
+**Response**:
+```json
+{
+  "status": "success",
+  "timestamp": "2025-09-06T10:30:00Z",
+  "data": {
+    "recent_trades": [
+      {
+        "timestamp": "2025-09-06T09:15:00Z",
+        "symbol": "MSFT",
+        "side": "buy",
+        "quantity": 2.5,
+        "price": 380.25,
+        "total_value": 950.63,
+        "strategy": "ma_crossover"
+      }
+    ],
+    "trade_count_today": 4,
+    "total_volume_today": 3456.78
+  }
+}
+```
+
+#### GET `/api/capital`
+**Purpose**: Capital allocation and utilization metrics  
+**Integration**: Capital management dashboard tab
+
+**Response**:
+```json
+{
+  "status": "success",
+  "timestamp": "2025-09-06T10:30:00Z",
+  "data": {
+    "total_capital": 500.00,
+    "available_cash": 123.45,
+    "invested_capital": 376.55,
+    "capital_utilization_percent": 75.31,
+    "daily_pnl": 15.67,
+    "daily_pnl_percent": 3.13,
+    "max_position_size": 50.00,
+    "positions_count": 3,
+    "max_positions": 8
+  }
+}
+```
+
+#### GET `/api/strategies`
+**Purpose**: Available strategies and configurations  
+**Integration**: Strategy management tab
+
+**Response**:
+```json
+{
+  "status": "success",
+  "timestamp": "2025-09-06T10:30:00Z",
+  "data": {
+    "available_strategies": [
+      "ma_crossover",
+      "rsi_mean_reversion", 
+      "momentum_breakout"
+    ],
+    "active_strategy": "ma_crossover",
+    "strategy_profiles": [
+      "Conservative",
+      "Moderate", 
+      "Aggressive",
+      "Custom"
+    ],
+    "current_profile": "Moderate"
+  }
+}
+```
+
+#### GET `/api/signals`
+**Purpose**: Recent trading signals and performance  
+**Integration**: Signal monitoring in desktop viewer
+
+**Response**:
+```json
+{
+  "status": "success",
+  "timestamp": "2025-09-06T10:30:00Z",
+  "data": {
+    "recent_signals": [
+      {
+        "timestamp": "2025-09-06T09:30:00Z",
+        "symbol": "TSLA",
+        "signal": "buy",
+        "strength": 0.75,
+        "strategy": "momentum_breakout",
+        "executed": true
+      }
+    ],
+    "signals_today": 6,
+    "signals_executed": 4,
+    "signals_blocked": 2,
+    "success_rate_percent": 66.67
+  }
+}
+```
+
+---
+
+## Core Web API Endpoints
 
 ### Dashboard Interface
 

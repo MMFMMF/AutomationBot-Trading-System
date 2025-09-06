@@ -1,8 +1,20 @@
-# AutomationBot - Deployment Guide
+# AutomationBot Enhanced Trading Platform - Deployment Guide
 
-## Quick Deployment
+## 🚀 Quick Deployment (One-Click Solution)
 
-The AutomationBot paper trading platform is designed for easy local deployment with minimal setup. Follow these steps to get the system running with $500 starting capital.
+The AutomationBot Enhanced Professional Trading Platform features a complete **one-click deployment solution** with Enhanced Desktop Trading Viewer, requiring no technical expertise for daily operation.
+
+### **Windows Users - Instant Deployment**
+1. **One-Click Launch**: Double-click `START_TRADING_VIEWER.bat` 
+2. **Enhanced Desktop Viewer**: Professional Bloomberg Terminal-inspired interface opens automatically
+3. **Backend API**: Starts automatically in background with comprehensive monitoring
+4. **Clean Shutdown**: Double-click `STOP_TRADING_VIEWER.bat` for complete system shutdown
+
+### **Enhanced Features**
+- **Professional Desktop Interface**: 7 specialized tabs with real-time monitoring
+- **One-Click Autonomous Operation**: No terminal commands or technical knowledge required
+- **Bloomberg Terminal Aesthetics**: Dark theme, modern typography, professional layout
+- **Comprehensive System Monitoring**: Built-in diagnostics and health monitoring
 
 ## System Requirements
 

@@ -1,10 +1,12 @@
-# AutomationBot - System Architecture
+# AutomationBot Enhanced Trading Platform - System Architecture
 
 ## Overview
 
-AutomationBot is a professional-grade paper trading platform built for learning and strategy development. The system features a modular architecture with real-time market data integration, sophisticated risk management, and a Bloomberg-style dashboard interface.
+AutomationBot Enhanced Professional Trading Platform is a comprehensive paper trading system with **Enhanced Desktop Trading Viewer**, one-click startup solution, and professional Bloomberg Terminal-inspired interface. The system features modular architecture with real-time market data, sophisticated risk management, and autonomous operation capabilities.
 
-**Current Configuration**: $500 starting capital optimized for micro-trading with fractional shares and position diversification.
+**Current Configuration**: $500 starting capital with Enhanced Desktop Interface  
+**Version**: 4.0 - Enhanced Professional Trading Platform  
+**Key Features**: One-click startup, Enhanced Desktop Viewer, 400% API enhancement
 
 ## Core Architecture
 
